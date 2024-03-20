@@ -37,6 +37,16 @@ class RegisterActivity : AppCompatActivity() {
 
             if (!email.isNullOrEmpty() && !password1.isNullOrEmpty() && !password2.isNullOrEmpty()) {
 
+                if (password1.length < 6 || password2.length < 6) {
+                    Toast.makeText(this, "Password needs to be at least 6 characters long.", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener;
+                }
+
+                if (!isEmailValid(email)) {
+                    Toast.makeText(this, "Entered email is not a valid email.", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener;
+                }
+
                 if (password1 == password2) {
 
                     auth.createUserWithEmailAndPassword(email, password1)
@@ -71,5 +81,10 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun isEmailValid(email: String): Boolean {
+        val emailRegex = Regex("^\\S+@\\S+\\.\\S+\$")
+        return emailRegex.matches(email)
     }
 }

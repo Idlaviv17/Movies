@@ -50,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(
                                 this,
-                                "Incorrect data.",
+                                "Incorrect credentials.",
                                 Toast.LENGTH_SHORT,
                             ).show()
                         }
